@@ -18,9 +18,29 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuShortc
 import { DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { DropdownMenuSeparator } from './ui/dropdown-menu'
+import { useStore } from '@/store/submenu'
+
+interface NavButtonProps {
+    id: number
+    iconSource: string
+    
+}
+
+function NavButton({id, iconSource}:NavButtonProps): JSX.Element {
+    const sub = useStore((state) => state.sub)
+    const setSub = useStore((state) => state.changeSub)
+
+    return(
+        <Button onClick={() => setSub(id)} className={sub === id ? "bg-primary-foreground/30 hover:bg-primary-foreground/30" : ""} variant="default" size="icon">
+            <img className={sub === id ? "opacity-100" : "opacity-80" }src={iconSource}/>
+        </Button>
+    )
+}
 
 
 export default function Main():JSX.Element {
+    
+    
     return(
         <>
             <div className="w-[4.6rem] select-none font-[Inter] border-r-red-800 border-r-2 h-[100vh] bg-primary">
@@ -28,46 +48,26 @@ export default function Main():JSX.Element {
                     <div className="grid justify-items-center gap-0.5">
                         <img className='h-8 w-8 opacity-90 mb-3' src={logo} />
                         
-                        <Button variant="default" size="icon">
-                            <img className="opacity-80" src={home}/>
-                        </Button>
+                        <NavButton id={1} iconSource={home}></NavButton>
 
-                        <Button variant="default" size="icon">
-                            <img className="opacity-80" src={lineChart}/>
-                        </Button>
+                        <NavButton id={2} iconSource={lineChart}></NavButton>
 
-                        <Button variant="default" size="icon">
-                            <img className="opacity-80" src={shoppingBag}/>
-                        </Button>
+                        <NavButton id={3} iconSource={shoppingBag}></NavButton>
 
-                        <Button variant="default" size="icon">
-                            <img className="opacity-80" src={plusSquare}/>
-                        </Button>
+                        <NavButton id={4} iconSource={plusSquare}></NavButton>
 
-                        <Button variant="default" size="icon">
-                            <img className="opacity-80" src={rows}/>
-                        </Button>
+                        <NavButton id={5} iconSource={rows}></NavButton>
 
-                        <Button variant="default" size="icon">
-                            <img className="opacity-80" src={users}/>
-                        </Button>
+                        <NavButton id={6} iconSource={users}></NavButton>
 
-                        <Button variant="default" size="icon">
-                            <img className="opacity-80" src={alert}/>
-                        </Button>
+                        <NavButton id={7} iconSource={alert}></NavButton>
                         
-                        <Button variant="default" size="icon">
-                            <img className="opacity-80" src={settings}/>
-                        </Button>
+                        <NavButton id={8} iconSource={settings}></NavButton>
                     </div>
                     <div className="grid justify-items-center gap-0.5">
-                        <Button variant="default" size="icon">
-                            <img className="opacity-80" src={codeSquare}/>
-                        </Button>
+                        <NavButton id={9} iconSource={codeSquare}></NavButton>
 
-                        <Button variant="default" size="icon">
-                            <img className="opacity-80" src={support}/>
-                        </Button>
+                        <NavButton id={10} iconSource={support}></NavButton>
                         
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
